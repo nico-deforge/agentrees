@@ -11,13 +11,6 @@ Git worktree manager for running parallel Claude Code agents on any project.
 export AGENTREES_DEV_DIR="$HOME/projects"  # your projects directory
 ```
 
-3. Add to your global mise config (`~/.config/mise/config.toml`):
-
-```toml
-[task_config]
-includes = ["/path/to/agentrees/.mise.toml"]
-```
-
 ## Usage
 
 ### Create worktrees
