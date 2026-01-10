@@ -18,8 +18,8 @@ This repo contains bash scripts and mise tasks to create, manage, and launch git
 
 ## Key Design Decisions
 
-- Scripts accept project name as first argument
-- Projects are resolved from `$HOME/Documents/0-DEV/`
+- Scripts accept project name or path as first argument
+- Projects are resolved from `$AGENTREES_DEV_DIR` if set
 - Default: 1 worktree (not 5 like the API version)
 - Base branch is auto-detected (main or master)
 - Minimal init: only runs `mise trust`, no dependency sync
@@ -28,5 +28,5 @@ This repo contains bash scripts and mise tasks to create, manage, and launch git
 ## When Modifying
 
 - Keep scripts POSIX-compatible where possible
-- Test with multiple projects (api, hb, daca)
+- Test with multiple projects
 - Ensure absolute paths work when run from any directory

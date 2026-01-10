@@ -8,7 +8,7 @@
 
 set -e
 
-DEV_DIR="$HOME/Documents/0-DEV"
+DEV_DIR="${AGENTREES_DEV_DIR:-}"
 
 # Get git username for branch prefix
 get_git_username() {
@@ -44,10 +44,11 @@ fi
 # Resolve project path
 if [ -d "$PROJECT" ]; then
   REPO_ROOT=$(cd "$PROJECT" && git rev-parse --show-toplevel 2>/dev/null || echo "$PROJECT")
-elif [ -d "$DEV_DIR/$PROJECT" ]; then
+elif [ -n "$DEV_DIR" ] && [ -d "$DEV_DIR/$PROJECT" ]; then
   REPO_ROOT="$DEV_DIR/$PROJECT"
 else
-  echo "Error: Project '$PROJECT' not found in $DEV_DIR"
+  echo "Error: Project '$PROJECT' not found"
+  [ -z "$DEV_DIR" ] && echo "Hint: Set AGENTREES_DEV_DIR or provide a path"
   exit 1
 fi
 
