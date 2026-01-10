@@ -1,0 +1,25 @@
+# Agentrees - Git Worktree Manager for Claude Agents
+#
+# Add this to your global mise config (~/.config/mise/config.toml):
+# [task_config]
+# includes = ["~/Documents/0-DEV/agentrees/.mise.toml"]
+
+[tasks."wt:setup"]
+description = "Create N git worktrees for parallel Claude agents"
+run = "$HOME/Documents/0-DEV/agentrees/scripts/setup.sh {{arg(i=0)}} {{arg(i=1, default='1')}} {{arg(i=2, default='')}}"
+
+[tasks."wt:cleanup"]
+description = "Remove all agent worktrees and branches"
+run = "$HOME/Documents/0-DEV/agentrees/scripts/cleanup.sh {{arg(i=0)}} {{option(name='keep-branches')}}"
+
+[tasks."wt:rebase"]
+description = "Rebase all agent worktrees on base branch"
+run = "$HOME/Documents/0-DEV/agentrees/scripts/rebase.sh {{arg(i=0)}} {{arg(i=1, default='')}}"
+
+[tasks."wt:status"]
+description = "Show status of all agent worktrees"
+run = "$HOME/Documents/0-DEV/agentrees/scripts/status.sh {{arg(i=0)}} {{arg(i=1, default='')}}"
+
+[tasks."wt:launch"]
+description = "Launch Claude in all worktrees (Ghostty tabs)"
+run = "$HOME/Documents/0-DEV/agentrees/scripts/launch.sh {{arg(i=0)}} {{option(name='terminal')}} {{option(name='no-claude')}}"
