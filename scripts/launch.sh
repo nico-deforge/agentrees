@@ -80,8 +80,20 @@ launch_ghostty() {
   local worktree="$1"
   local worktree_name=$(basename "$worktree")
 
-  # Open Ghostty in the worktree directory
+  # Open a new tab in Ghostty (not a new window)
   open -a Ghostty "$worktree"
+
+  if [ "$LAUNCH_CLAUDE" = true ]; then
+    sleep 0.3
+    osascript << EOF
+tell application "System Events"
+  tell process "Ghostty"
+    keystroke "claude"
+    keystroke return
+  end tell
+end tell
+EOF
+  fi
 
   echo "  Opened: $worktree_name"
 }
@@ -160,7 +172,7 @@ done
 echo ""
 echo "=== Launched ${TERMINAL} tabs for all worktrees ==="
 echo ""
-if [ "$TERMINAL" = "ghostty" ]; then
+if [ "$LAUNCH_CLAUDE" = false ]; then
   echo "Run 'claude' in each tab to start the agents"
 fi
 echo "Tip: Use 'mise run wt:status $PROJECT' to check progress"
