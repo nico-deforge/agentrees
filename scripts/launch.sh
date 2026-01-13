@@ -28,8 +28,14 @@ for arg in "$@"; do
       # Unknown option
       ;;
     *)
+      # First bare argument is the project, second (if matches a known
+      # terminal) is treated as the terminal name so that calls like:
+      #   launch.sh api iterm
+      # work as expected (as used by some mise tasks).
       if [ -z "$PROJECT" ]; then
         PROJECT="$arg"
+      elif [ "$arg" = "ghostty" ] || [ "$arg" = "iterm" ] || [ "$arg" = "terminal" ]; then
+        TERMINAL="$arg"
       fi
       ;;
   esac
