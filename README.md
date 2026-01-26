@@ -1,3 +1,5 @@
+Archived in favor of this repository: https://github.com/coderabbitai/git-worktree-runner which is perfectly adapted for my worktree workflow 
+
 # Agentrees
 
 Git worktree manager for running parallel Claude Code agents on any project.
